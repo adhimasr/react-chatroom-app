@@ -1,11 +1,17 @@
-import { useCollection } from '../../api/collection';
+import { useEffect, useRef } from 'react';
 import { format, fromUnixTime } from 'date-fns';
+import { useCollection } from '../../api/collection';
 
 const ChatBubble = () => {
   const { collectionRef, isLoading } = useCollection('messages');
+  const messages = useRef(null);
+
+  useEffect(() => {
+    messages.current.scrollTop = messages.current.scrollHeight;
+  }, [collectionRef]);
 
   return (
-    <div className="bg-slate-900 overflow-x-auto flex flex-1 flex-col gap-4 p-4">
+    <div ref={messages} className="bg-slate-900 overflow-x-auto flex flex-1 flex-col gap-4 p-4">
       {isLoading && (
         <div className="bg-slate-600 rounded-xl p-4">
           <div className="flex flex-row gap-1 animate-pulse">
