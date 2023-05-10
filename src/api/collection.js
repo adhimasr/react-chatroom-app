@@ -7,11 +7,11 @@ const useCollection = (myCollection) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const q = query(collection(firestore, myCollection), orderBy('createdAt', 'asc'));
+    const q = query(collection(firestore, myCollection), orderBy('date', 'asc'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const docs = [];
       querySnapshot.forEach((doc) => {
-        doc.data().createdAt && docs.push({ ...doc.data(), id: doc.id });
+        doc.data().date && docs.push({ ...doc.data(), id: doc.id });
       });
       setCollectionRef(docs);
       setIsLoading(false);

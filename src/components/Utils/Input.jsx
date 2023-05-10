@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 
-const UtilsInput = ({ value, placeholder, ...props }) => {
+const UtilsInput = forwardRef(({ ...props }, ref) => {
   return (
-    <input type="text" value={value} placeholder={placeholder} {...props} className="w-full bg-slate-600 text-sm text-white block border-2 border-slate-700 border-solid focus:outline-none rounded-xl p-4" />
+    <input ref={ref} className="w-full bg-slate-600 text-sm text-white block border-2 border-slate-700 border-solid focus:outline-none rounded-xl p-4" {...props} />
   );
-};
+});
 
-UtilsInput.propTypes = { value: PropTypes.string.isRequired, placeholder: PropTypes.string };
+UtilsInput.displayName = 'UtilsInput';
 
 export default UtilsInput;
