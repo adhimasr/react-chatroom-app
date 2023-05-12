@@ -1,25 +1,27 @@
+import { useState } from 'react';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { useAuthUser } from './user';
 import { storage } from '../config/firebase';
 
-const useStorage = () => {
-  const authUser = useAuthUser();
-
+const useStorage = (authUser) => {
+  const [isUploading, setIsUploading] = useState(false);
+  
   const uploadFile = async (file) => {
     try {
+      setIsUploading(true);
+      
       const storageRef = ref(storage, `${authUser.uid}/image/${file.name}`);
-  
       const snapshot = await uploadBytes(storageRef, file);
       const downloadURL = await getDownloadURL(snapshot.ref);
-  
+      
       return downloadURL;
     } catch (error) {
-      console.error('Error uploading file:', error);
-      throw error;
+      console.log({ name: 'log error upload file...', error });
+    } finally {
+      setIsUploading(false);
     }
   };
 
-  return uploadFile;
+  return { uploadFile, isUploading };
 };
 
 export default useStorage;

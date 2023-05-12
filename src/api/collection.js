@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { firestore } from '../config/firebase';
 import { collection, addDoc, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { firestore } from '../config/firebase';
 
 const useCollection = (myCollection) => {
   const [collectionRef, setCollectionRef] = useState([]);
@@ -32,4 +32,4 @@ const useCollection = (myCollection) => {
   return { addDocToCollection, collectionRef, isLoading };
 };
 
-export { useCollection };
+export default useCollection;

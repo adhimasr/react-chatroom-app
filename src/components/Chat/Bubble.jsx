@@ -1,12 +1,11 @@
+import PropTypes from 'prop-types';
 import { useEffect, useRef } from 'react';
 import { format, fromUnixTime } from 'date-fns';
-import { useCollection } from '../../api/collection';
-import { useAuthUser } from '../../api/user';
+import useCollection from '../../api/collection';
 
-const ChatBubble = () => {
+const ChatBubble = ({ authUser }) => {
   const { collectionRef, isLoading } = useCollection('messages');
   const messages = useRef(null);
-  const authUser = useAuthUser();
 
   useEffect(() => {
     messages.current.scrollTop = messages.current.scrollHeight;
@@ -36,5 +35,7 @@ const ChatBubble = () => {
     </div>
   );
 };
+
+ChatBubble.propTypes = { authUser: PropTypes.object };
 
 export default ChatBubble;
