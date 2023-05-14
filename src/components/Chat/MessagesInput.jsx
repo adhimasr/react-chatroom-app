@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState, useRef } from 'react';
 import { AiOutlinePaperClip, AiOutlineSend } from 'react-icons/ai';
-import { UtilsInput, UtilsBadge } from '../Utils';
+import { UtilsInput, UtilsBadge } from '../index';
 import { timestamp } from '../../config/firebase';
 import useStorage from '../../api/storage';
 import useCollection from '../../api/collection';

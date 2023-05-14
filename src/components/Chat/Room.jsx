@@ -1,7 +1,5 @@
 import { useAuthUser } from '../../api/user';
-import ChatHeader from './Header';
-import ChatBubble from './Bubble';
-import ChatMessagesInput from './MessagesInput';
+import { ChatHeader, ChatBubble, ChatMessagesInput } from '../index';
 
 const ChatRoom = () => {
   const authUser = useAuthUser();

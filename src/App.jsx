@@ -1,13 +1,12 @@
 import './App.css';
 import { useAuthUser } from './api/user';
-import ChatRoom from './components/Chat/Room';
-import SignIn from './components/Form/Signin';
+import { ChatRoom, AuthForm } from './components/index';
 
 const App = () => {
   const authUser = useAuthUser();
   return (
     <>
-      {authUser ? <ChatRoom /> : <SignIn />}
+      {authUser ? <ChatRoom /> : <AuthForm />}
     </>
   );
 };
